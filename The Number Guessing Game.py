@@ -1,42 +1,42 @@
 import random
 import art
-print(art.logo)
+
+print(art.logo)  
+
+def play_game(attempts):
+    random_number = random.randint(1, 100)
+    
+    for i in range(attempts):
+        print(f"\nYou have {attempts - i} attempts remaining to guess the number.")
+        guess = int(input("Make a guess: "))
+
+        if guess < random_number:
+            print("Too low!")
+        elif guess > random_number:
+            print("Too high!")
+        else:
+            print(f"Congratulations! You found the number {random_number}!")
+            return  
+            
+    print(f"You've run out of guesses. The number was {random_number}. You lose!")
+
+def start_game():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 100.")
+    
+    option = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+    if option == "easy":
+        play_game(attempts=10)
+    elif option == "hard":
+        play_game(attempts=5)
+    else:
+        print("Invalid option! Please choose 'easy' or 'hard'.")
 
 should_continue = True
 while should_continue:
-    print("Welcome to the Number Guessing Game!")
-    print("I'm thinking of a number between 1 and 100.")
-    option = str(input("Choose a difficulty. Type 'easy' or 'hard': "))
-
-    random_number = random.randint(1, 100)
-
-    if option == "easy":
-        for i in range(1, 11):
-            print(f"\nYou have {11 - i} attempts remaining to guess the number.")
-            guess = int(input("Make a guess: "))
-            if guess < random_number:
-                print("Too low!")
-            elif guess > random_number:
-                print("Too high!")
-            else:
-                print("Oh You found it!")
-                break;
-
-    if option == "hard":
-        for i in range(1, 6):
-            print(f"\nYou have {6 - i} attempts remaining to guess the number.")
-            guess = int(input("Make a guess: "))
-            if guess < random_number:
-                print("Too low!")
-            elif guess > random_number:
-                print("Too high!")
-            else:
-                print("Oh You found it!")
-                break;
+    start_game()
+    choose_option = input("Type 'yes' to continue or 'no' to stop the game: ").lower()
     
-    choose_option = str(input("Type 'yes' for continue or 'no' for stop game: "))
-    if choose_option == "yes":
-        should_continue = True
-    else:
+    if choose_option == "no":
         should_continue = False
         print("Game completed successfully!")
